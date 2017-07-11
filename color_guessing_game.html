@@ -1,0 +1,60 @@
+<html>
+    <head>
+    </head>
+    <body>
+      <script>
+          var colors = ["blue", "cyan", "gold", "gray", "green", "magenta",
+              "red", "white", "yellow"];
+          colors = colors.sort();
+          var randomColorIndex = Math.floor(Math.random() * colors.length);
+          var myColor = colors[randomColorIndex];
+          console.log(myColor);
+          var guessesCount = 0;
+          var colorGuessed = false;
+          do {
+            guessesCount++;
+            var guess = window.prompt(
+                "I am thining in one of these colors:\n" +
+                "\n" +
+                colors.toString() + "\n" +
+                "\n" +
+                "What color am I thinking of?");
+            var message = "";
+            if(colors.indexOf(guess) == -1) {
+                message = "Sorry, I don't recognize your color." +
+                    "\n" +
+                    "\n" +
+                    "Please try again.";
+            } else if(guess == myColor) {
+                colorGuessed = true;
+                message = "Congratulations! You have guessed the color!" +
+                    "\n" +
+                    "\n" +
+                    "It took you " + guessesCount +
+                    " guesses to finish the game!" +
+                    "\n" +
+                    "\n" +
+                    "You can see the color in the background.";
+                document.body.style.background = myColor;
+            } else if(guess > myColor) {
+              message = "Sorry, your guess is not correct!" +
+                  "\n" +
+                  "\n" +
+                  "Hint: your color is alphabetically higher than mine." +
+                  "\n" +
+                  "\n" +
+                  "Please try again.";
+            } else if(guess < myColor) {
+              message = "Sorry, your guess is not correct!" +
+                  "\n" +
+                  "\n" +
+                  "Hint: your color is alphabetically lower than mine." +
+                  "\n" +
+                  "\n" +
+                  "Please try again.";
+            }
+            alert(message);
+          } while(colorGuessed == false);
+      </script>
+    </body>
+</html>
